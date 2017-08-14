@@ -1,0 +1,20 @@
+/*
+© 2017 TAKAHASHI,Toru
+*/
+/* 
+    Created on : 2017/08/12, 11:47:46
+    Author     : toru
+*/
+
+#x_axis {
+    -fx-fill: red;
+}
+#y_axis {
+    -fx-fill: green;
+}
+#z_axis {
+    -fx-fill: blue;
+}
+#subScene {
+    -fx-fill: darkolivegreen;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane fx:id="root" stylesheets="@CameraCoordinatesView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.torutk.cameracoordinates.CameraCoordinatesViewController">
+   <center>
+      <SubScene id="scene" fx:id="subScene" fill="#ddeeff" height="200.0" width="200.0" BorderPane.alignment="CENTER">
+        <root>
+          <Region />
+        </root>
+      </SubScene>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="200.0" spacing="2.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="17.0" prefWidth="101.0" text="%legend.title">
+               <padding>
+                  <Insets top="4.0" />
+               </padding></Label>
+            <TextFlow prefHeight="27.0" prefWidth="100.0">
+               <children>
+                  <Text id="x_axis" strokeType="OUTSIDE" strokeWidth="0.0" text="%legend.x_axis.text" />
+                  <Text id="y_axis" strokeType="OUTSIDE" strokeWidth="0.0" text="%legend.y_axis.text" />
+                  <Text id="z_axis" strokeType="OUTSIDE" strokeWidth="0.0" text="%legend.z_axis.text" />
+               </children>
+               <padding>
+                  <Insets left="4.0" />
+               </padding>
+            </TextFlow>
+            <Label text="%camera.title">
+               <padding>
+                  <Insets top="8.0" />
+               </padding></Label>
+            <HBox prefWidth="200.0" spacing="8.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" onAction="#defaultCamera" selected="true" text="%camera.default.text">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="cameraSelectionToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rotationsButton" mnemonicParsing="false" onAction="#rotationsCamera" text="%camera.rotations.text" toggleGroup="$cameraSelectionToggleGroup">
+                     <padding>
+                        <Insets bottom="4.0" />
+                     </padding>
+                  </RadioButton>
+               </children>
+               <padding>
+                  <Insets left="4.0" />
+               </padding>
+            </HBox>
+            <VBox fx:id="rotationsVBox" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+               <children>
+                  <Label text="%rotations.title">
+                     <padding>
+                        <Insets top="8.0" />
+                     </padding></Label>
+                  <Label text="%rotations.azimuth.text">
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding>
+                  </Label>
+                  <Slider fx:id="azimuthSlider" majorTickUnit="60.0" max="360.0" showTickLabels="true" showTickMarks="true">
+                     <padding>
+                        <Insets left="8.0" right="4.0" />
+                     </padding>
+                  </Slider>
+                  <Label text="%rotations.elevation.text">
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding>
+                  </Label>
+                  <Slider fx:id="elevationSlider" majorTickUnit="30.0" max="90.0" min="-90.0" minorTickCount="2" showTickLabels="true" showTickMarks="true">
+                     <padding>
+                        <Insets left="8.0" right="4.0" />
+                     </padding>
+                  </Slider>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="4.0" left="8.0" right="4.0" top="4.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>
