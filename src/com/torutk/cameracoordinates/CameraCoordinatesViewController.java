@@ -20,7 +20,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Cylinder;
+import javafx.scene.shape.DrawMode;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
@@ -86,6 +88,11 @@ public class CameraCoordinatesViewController implements Initializable {
         Node zAxis = createAxisGroup(Rotate.X_AXIS, -90, Color.BLUE);
         space.getChildren().addAll(xAxis, yAxis, zAxis);
 
+        Box xyPlane = createPlane(Rotate.Z_AXIS, 0);
+        Box yzPlane = createPlane(Rotate.Y_AXIS, -90);
+        Box zxPlane = createPlane(Rotate.X_AXIS, -90);
+        space.getChildren().addAll(xyPlane, yzPlane, zxPlane);
+        
         subScene.setCamera(createCamera(TRANSLATE_DISTANCE));
         subScene.setRoot(space);
 
@@ -117,6 +124,16 @@ public class CameraCoordinatesViewController implements Initializable {
         camera.setFarClip(400);
         camera.getTransforms().addAll(args);
         return camera;
+    }
+
+    // 大きさ：100x100、厚さ：1の薄い箱を作成。原点中心に指定軸、指定角度回転させる。
+    // XY平面、YZ平面、ZX平面を作る用途で作成した。
+    private Box createPlane(Point3D rotateAxis, double rotate) {
+        Box plane = new Box(100, 100, 1);
+        plane.setDrawMode(DrawMode.LINE);
+        plane.setRotationAxis(rotateAxis);
+        plane.setRotate(rotate);
+        return plane;
     }
     
 }
