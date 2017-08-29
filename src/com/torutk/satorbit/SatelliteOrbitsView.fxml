@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane fx:id="root" stylesheets="@CameraCoordinatesView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.torutk.cameracoordinates.CameraCoordinatesViewController">
+<BorderPane fx:id="root" stylesheets="@SatelliteOrbitsView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.torutk.satorbit.SatelliteOrbitsViewController">
    <center>
       <SubScene id="scene" fx:id="subScene" fill="#ddeeff" height="200.0" width="200.0" BorderPane.alignment="CENTER">
         <root>
@@ -81,6 +81,16 @@
                      </padding>
                   </Label>
                   <Slider fx:id="elevationSlider" majorTickUnit="30.0" max="90.0" min="-90.0" minorTickCount="2" showTickLabels="true" showTickMarks="true">
+                     <padding>
+                        <Insets left="8.0" right="4.0" />
+                     </padding>
+                  </Slider>
+                  <Label text="%rotations.distance.text">
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding>
+                  </Label>
+                  <Slider fx:id="distanceSlider" min="6.0" showTickLabels="true" showTickMarks="true" value="20.0">
                      <padding>
                         <Insets left="8.0" right="4.0" />
                      </padding>
