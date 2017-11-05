@@ -9,6 +9,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SubScene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +36,10 @@ public class SatelliteOrbitsViewController implements Initializable {
     private Slider elevationSlider;
     @FXML
     private Slider distanceSlider;
+    @FXML
+    private CheckBox axesCheckBox;
+    @FXML
+    private CheckBox planesCheckBox;
     
     /**
      * デフォルト姿勢・距離のカメラを3D描画シーンに設定する。
@@ -72,6 +77,8 @@ public class SatelliteOrbitsViewController implements Initializable {
         orbits3dView.azimuthProperty().bind(Bindings.subtract(-90, azimuthSlider.valueProperty()));
         orbits3dView.elevationProperty().bind(Bindings.multiply(-1, elevationSlider.valueProperty()));
         orbits3dView.distanceProperty().bind(Bindings.multiply(-1, distanceSlider.valueProperty()));
+        axesCheckBox.setOnAction(ev -> orbits3dView.setAxesVisible(axesCheckBox.isSelected()));
+        planesCheckBox.setOnAction(ev -> orbits3dView.setPlanesVisible(planesCheckBox.isSelected()));
     }
 
 }

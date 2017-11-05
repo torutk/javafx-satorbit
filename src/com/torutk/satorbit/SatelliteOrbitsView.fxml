@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.SubScene?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane fx:id="root" stylesheets="@SatelliteOrbitsView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.torutk.satorbit.SatelliteOrbitsViewController">
+<BorderPane fx:id="root" prefWidth="429.0" stylesheets="@SatelliteOrbitsView.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.torutk.satorbit.SatelliteOrbitsViewController">
    <center>
       <SubScene id="scene" fx:id="subScene" fill="#ddeeff" height="200.0" width="200.0" BorderPane.alignment="CENTER">
         <root>
@@ -38,6 +39,15 @@
                   <Insets left="4.0" />
                </padding>
             </TextFlow>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <CheckBox fx:id="axesCheckBox" mnemonicParsing="false" text="%axes.checkbox.text" />
+                  <CheckBox fx:id="planesCheckBox" mnemonicParsing="false" text="%planes.checkbox.text" />
+               </children>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </HBox>
             <Label text="%camera.title">
                <padding>
                   <Insets top="8.0" />

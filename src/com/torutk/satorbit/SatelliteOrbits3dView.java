@@ -46,6 +46,9 @@ public class SatelliteOrbits3dView {
     private final Translate distanceTranslate = new Translate(0, 0, CAMERA_DISTANCE); // カメラの距離    
     private final Rotate earthRotate = new Rotate(0, Rotate.Y_AXIS); // 地球の自転方向の回転
 
+    private final Group axes = new Group();
+    private final Group planes = new Group();
+    
     // カメラの位置・姿勢を定める座標変換列
     private final Transform[] cameraTransforms = new Transform[] {
         new Rotate(-90, Rotate.X_AXIS), // カメラをZ軸正方向が画面上になるよう回転
@@ -89,18 +92,19 @@ public class SatelliteOrbits3dView {
     void rotationCamera() {
         subScene.setCamera(createCamera(cameraTransforms));
     }
+    
     void initialize() {
         // XYZ座標軸を作成
         Node xAxis = createAxisGroup(Rotate.Z_AXIS, 90, Color.RED);
         Node yAxis = createAxisGroup(Rotate.Z_AXIS, 180, Color.GREEN);
         Node zAxis = createAxisGroup(Rotate.X_AXIS, -90, Color.BLUE);
-        space.getChildren().addAll(xAxis, yAxis, zAxis);
+        axes.getChildren().addAll(xAxis, yAxis, zAxis);
 
         // XY、YZ、ZX平面を作成
         Box xyPlane = createPlane(Rotate.Z_AXIS, 0);
         Box yzPlane = createPlane(Rotate.Y_AXIS, -90);
         Box zxPlane = createPlane(Rotate.X_AXIS, -90);
-        space.getChildren().addAll(xyPlane, yzPlane, zxPlane);
+        planes.getChildren().addAll(xyPlane, yzPlane, zxPlane);
         
         // 地球を生成
         final Sphere earth = createEarth();
@@ -123,6 +127,22 @@ public class SatelliteOrbits3dView {
         subScene.setCamera(createCamera(distanceTranslate));
     }
         
+    void setAxesVisible(boolean isVisible) {
+        if (isVisible) {
+            space.getChildren().add(axes);
+        } else {
+            space.getChildren().remove(axes);
+        }
+    }
+    
+    void setPlanesVisible(boolean isVisible) {
+        if (isVisible) {
+            space.getChildren().add(planes);
+        } else  {
+            space.getChildren().remove(planes);
+        }
+    }
+    
     // 3Dの座標軸形状を作成する。
     private Group createAxisGroup(Point3D rotateAxis, double rotate, Color diffuseColor) {
         Group group = new Group();
